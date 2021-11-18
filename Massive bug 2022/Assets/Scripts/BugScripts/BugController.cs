@@ -21,7 +21,7 @@ public class BugController : MonoBehaviour
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        //destination = IngameManager.instance.PlayerTrans;
+        destination = IngameManager.instance.playerTrans;
 
         currentHP = maxHP;
 

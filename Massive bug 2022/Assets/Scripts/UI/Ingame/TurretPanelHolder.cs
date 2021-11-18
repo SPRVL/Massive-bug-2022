@@ -33,5 +33,6 @@ public class TurretPanelHolder : InfoPanelHolder
     protected override bool CanAddNewPanel()
     {
         return IngameManager.instance.DecreaseMoney(currentCost);
+     
     }
 }

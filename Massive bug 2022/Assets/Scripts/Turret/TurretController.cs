@@ -11,6 +11,7 @@ public class TurretController : MonoBehaviour
 
     [SerializeField] TurretData turretData;
     [SerializeField] float stressCoolSpeed;
+    [SerializeField] float cdSpeedInterval;
     [SerializeField] int stressPointPerShoot;
 
     [Range(0, maxStress)] protected float _stressPoint;
@@ -37,9 +38,11 @@ public class TurretController : MonoBehaviour
     }
     private void Awake()
     {
+
         turretInspector = gameObject.GetComponent<TurretInspector>();
         turret = gameObject.GetComponent<Turret>();
         turret.spawnPos = IngameManager.instance.playerTrans.position;
+        turret.SetDamageableObject(turretData.objToSpawn);
     }
     private void Update()
     {
@@ -55,6 +58,7 @@ public class TurretController : MonoBehaviour
     }
     private void InvokeAttack()
     {
+        Debug.Log("Atk");
         if (currentTarget == null) currentTarget = GetTarget();
         if (isAvailable && currentTarget != null)
         {
@@ -79,6 +83,15 @@ public class TurretController : MonoBehaviour
     private void CheckCurrentExp()
     {
 
+    }
+
+    public void IncreaseShootSpeed()
+    {
+        cdSpeedMultiplier.val += cdSpeedInterval;
+    }
+    public void DecreaseShootSpeed()
+    {
+        cdSpeedMultiplier.val -= cdSpeedInterval;
     }
     private void CoolTurret()
     {

@@ -5,7 +5,15 @@ using MyDict;
 
 public class IngameManager : MonoBehaviour
 {
-    public static IngameManager instance;
+    private static IngameManager _instance;
+    public static IngameManager instance 
+    { 
+        get 
+        { 
+            if (_instance == null) Debug.LogError("Not found IngameManager"); 
+            return _instance; 
+        } 
+    }
 
     public Transform playerTrans { get; private set; }
 
@@ -32,7 +40,7 @@ public class IngameManager : MonoBehaviour
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         if (playerTrans == null) Debug.LogError("Player not found");
 
-        if (instance == null) instance = this;
+        if (_instance == null) _instance = this;
         else Destroy(gameObject);
     }
 
@@ -44,7 +52,7 @@ public class IngameManager : MonoBehaviour
     }
     public bool DecreaseMoney(int value)
     {
-        if(value > 0 && value <= currentMoney)
+        if(value >= 0 && value <= currentMoney)
         {
             currentMoney -= value;
             return true;

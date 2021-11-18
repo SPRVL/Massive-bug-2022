@@ -6,6 +6,7 @@ public class BugSpawner : MonoBehaviour
 {
     public static BugSpawner instance;
 
+    [HideInInspector]
     public List<Transform> bugTrans = new List<Transform>();
 
     [SerializeField] GameObject bugPrefab;

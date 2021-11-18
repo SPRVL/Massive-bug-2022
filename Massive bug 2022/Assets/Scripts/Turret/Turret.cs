@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    [SerializeField] GameObject damageableObj;
+    GameObject damageableObj;
 
     public float damageMultiplier = 1;
 
-    public Vector3 spawnPos = Vector3.zero;
+    [HideInInspector] public Vector3 spawnPos;
 
     public void Attack(Transform target)
     {
+        Debug.Log("attack");
         GameObject obj = 
             Instantiate(damageableObj, spawnPos, 
                         Quaternion.Euler(0, 0, Caculator.Vector2ToAngleInDegree(target.position - spawnPos)));
@@ -20,5 +21,9 @@ public class Turret : MonoBehaviour
         objLocker?.LockTarget(target);
 
         obj.GetComponent<DamageRelated>()?.SetDamageMultiplier(damageMultiplier);
+    }
+    public void SetDamageableObject(GameObject obj)
+    {
+        damageableObj = obj;
     }
 }

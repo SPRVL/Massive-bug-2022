@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretManualController : TurretController
+public class TurretManualController : MonoBehaviour
 {
     [SerializeField] Turret turret;
     private void Update()
